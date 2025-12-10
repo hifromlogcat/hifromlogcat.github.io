@@ -1,1 +1,0 @@
-# hifromlogcat.github.io

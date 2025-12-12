@@ -94,10 +94,10 @@ window.LOGCAT_ASSETS = [
     salePercent: "",
     storeUrl:
       "https://assetstore.unity.com/packages/templates/packs/tic-tac-toe-ai-online-multiplayer-photon-fusion-2-317201",
-    demoApk:
-      "https://drive.google.com/drive/folders/1tylq_T1XCSj-JVjIetwxxfpSlmKfPNCd?usp=drive_link",
     demoWeb:
       "https://logcatgames.com/tictactoe",
+    demoApk:
+      "https://drive.google.com/drive/folders/1tylq_T1XCSj-JVjIetwxxfpSlmKfPNCd?usp=drive_link",
     extraLinks: [],
   },
 
@@ -119,10 +119,10 @@ window.LOGCAT_ASSETS = [
     salePercent: "",
     storeUrl:
       "https://assetstore.unity.com/packages/templates/packs/get-13-puzzle-ready-to-publish-puzzle-game-template-324146",
-    demoApk:
-      "https://drive.google.com/drive/folders/1tRy-iCaMbCPKoRy_gi68k5zwREzaYKxW?usp=sharing",
     demoWeb:
       "https://logcatgames.com/g/13puzzle",
+    demoApk:
+      "https://drive.google.com/drive/folders/1tRy-iCaMbCPKoRy_gi68k5zwREzaYKxW?usp=sharing",
     extraLinks: [],
   },
 

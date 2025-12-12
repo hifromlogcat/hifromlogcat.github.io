@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Logcat Games – Unity Assets & Templates</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0e3e21;
+      color: #e5e7eb;
+    }
+
+    header {
+      padding: 32px 20px 40px;
+      text-align: center;
+      background: #0e3e21;
+      color: #ffffff;
+    }
+
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 0 auto 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 0 0 18px;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 9px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: #22c55e;
+      color: #022c22;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn-primary:hover {
+      background: #16a34a;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 16px 60px;
+    }
+
+    h2.section-title {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: #f9fafb;
+    }
+
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .asset-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 16px;
+      padding: 18px 14px 16px;
+      border: 2px solid rgba(34, 197, 94, 0.35);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease,
+        background-color 0.15s ease;
+    }
+
+    .asset-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #f97316, #22c55e);
+      pointer-events: none;
+    }
+
+    .asset-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      border-color: #22c55e;
+      background-color: rgba(15, 23, 42, 0.98);
+    }
+
+    .asset-thumb {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #111827;
+    }
+
+    .asset-thumb img {
+      width: 100%;
+      display: block;
+    }
+
+    .asset-title {
+      font-size: 17px;
+      margin: 0 0 4px;
+    }
+
+    .asset-tagline {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    .asset-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.18);
+      color: #bbf7d0;
+      margin-bottom: 6px;
+    }
+
+    .asset-features {
+      font-size: 13px;
+      margin: 0 0 10px 16px;
+      padding: 0;
+    }
+
+    .asset-features li {
+      margin-bottom: 4px;
+    }
+
+    .asset-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .asset-price-current {
+      font-weight: 600;
+    }
+
+    .asset-price-old {
+      margin-left: 6px;
+      text-decoration: line-through;
+      opacity: 0.6;
+      font-size: 12px;
+    }
+
+    .asset-sale-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #ea580c;
+      color: #020617;
+    }
+
+    .asset-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .asset-link {
+      font-size: 12px;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .asset-link:hover {
+      opacity: 1;
+      border-color: #22c55e;
+    }
+
+    footer {
+      font-size: 12px;
+      text-align: center;
+      padding: 20px;
+      opacity: 0.75;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="imgs/locatteam_logo.png" alt="Logcat Games logo" />
+    </div>
+    <h1>Logcat Games – Unity Assets</h1>
+    <p>Ready-to-publish mobile games & clean Unity templates.</p>
+    <a class="btn-primary" href="https://assetstore.unity.com/publishers/50521" target="_blank" rel="noopener">
+      View on Unity Asset Store
+    </a>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Available Assets</h2>
+      <div class="assets-grid" id="assets-grid">
+        <!-- Cards sẽ được render bằng JS, từ assets-data.js -->
+      </div>
+    </section>
+
+    <section style="margin-top: 40px;">
+      <h2 class="section-title">About Logcat Games</h2>
+      <p style="font-size: 14px; opacity: 0.9; max-width: 700px;">
+        Logcat Games is a small indie studio focused on simple, polished mobile games and clean Unity templates.
+        We’ve worked with publishers like Voodoo, Lion Studios, Homa, ZPlay and OneSoft, and shipped titles such as
+        <em>Cut in Half</em> and <em>Arrow Rush</em>.
+      </p>
+      <p style="font-size: 14px; opacity: 0.9;">
+        Contact: <strong>hifromlogcat@gmail.com</strong>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Logcat Games. All rights reserved.
+  </footer>
+
+  <!-- Load config -->
+  <script src="assets-data.js"></script>
+
+  <!-- Render cards từ config -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function () {
+      const grid = document.getElementById("assets-grid");
+      if (!grid || !window.LOGCAT_ASSETS) return;
+
+      grid.innerHTML = "";
+
+      window.LOGCAT_ASSETS.forEach(asset => {
+        const article = document.createElement("article");
+        article.className = "asset-card";
+
+        const featuresHtml = (asset.features || [])
+          .map(f => `<li>${f}</li>`)
+          .join("");
+
+        const extraLinksHtml = (asset.extraLinks || [])
+          .map(l => `<a class="asset-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`)
+          .join("");
+
+        // 🔽 Tạo nút demo WebGL / APK nếu có
+        const demoWebHtml = asset.demoWeb
+          ? `<a class="asset-link" href="${asset.demoWeb}" target="_blank" rel="noopener">WebGL Demo</a>`
+          : "";
+
+        const demoApkHtml = asset.demoApk
+          ? `<a class="asset-link" href="${asset.demoApk}" target="_blank" rel="noopener">Android APK</a>`
+          : "";
+
+        article.innerHTML = `
+        <div class="asset-thumb">
+          <img src="${asset.thumb}" alt="${asset.title}" />
+        </div>
+        <div class="asset-badge">${asset.badge}</div>
+        <h3 class="asset-title">${asset.title}</h3>
+        <p class="asset-tagline">
+          ${asset.tagline}
+        </p>
+        ${featuresHtml
+            ? `<ul class="asset-features">${featuresHtml}</ul>`
+            : ""
+          }
+        <div class="asset-meta">
+          <div class="asset-price">
+            <span class="asset-price-current">$${asset.price}</span>
+            ${asset.oldPrice
+            ? `<span class="asset-price-old">$${asset.oldPrice}</span>`
+            : ""
+          }
+          </div>
+          ${asset.salePercent
+            ? `<div class="asset-sale-badge">-${asset.salePercent}%</div>`
+            : ""
+          }
+        </div>
+        <div class="asset-links">
+          <a class="asset-link"
+            href="${asset.storeUrl}"
+            target="_blank" rel="noopener">Unity Asset Store</a>
+          ${demoWebHtml}
+          ${demoApkHtml}
+          ${extraLinksHtml}
+        </div>
+      `;
+
+        grid.appendChild(article);
+      });
+    })();
+  </script>
+</body>
+
+</html>

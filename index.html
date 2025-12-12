@@ -89,6 +89,8 @@
       overflow: hidden;
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease,
         background-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .asset-card::before {
@@ -203,6 +205,76 @@
       border-color: #22c55e;
     }
 
+    /* Demo row styles */
+    .asset-links-demo {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .asset-demo-label {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-right: 4px;
+    }
+
+    .asset-link-primary {
+      background: #22c55e;
+      color: #022c22;
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .asset-link-primary:hover {
+      background: #16a34a;
+    }
+
+    .asset-link-demo {
+      font-size: 11px;
+      padding: 5px 9px;
+    }
+
+    /* Footer / store button area */
+    .asset-footer {
+      margin-top: auto;
+      /* push footer to bottom inside flex card */
+      padding-top: 12px;
+    }
+
+    .asset-links-store {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .asset-link-store-main {
+      display: block;
+      width: calc(100% - 8px);
+      margin: 0 4px;
+      text-align: center;
+      font-weight: 600;
+      padding: 9px 12px;
+      background: #22c55e;
+      color: #022c22;
+      border-color: transparent;
+      border-radius: 999px;
+      box-sizing: border-box;
+    }
+
+    .asset-link-store-main:hover {
+      background: #16a34a;
+    }
+
+    .asset-links-extra {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
     footer {
       font-size: 12px;
       text-align: center;
@@ -259,7 +331,50 @@
 
     (function () {
       const grid = document.getElementById("assets-grid");
-      if (!grid || !window.LOGCAT_ASSETS) return;
+      if (!grid) return;
+
+      // If no LOGCAT_ASSETS config is loaded, render a single test card
+      if (!window.LOGCAT_ASSETS) {
+        const article = document.createElement("article");
+        article.className = "asset-card";
+        article.innerHTML = `
+        <div class="asset-thumb">
+          <img src="imgs/card_sushi-drop-merge.png" alt="Sample Game – Layout Preview" />
+        </div>
+        <div class="asset-badge">Test • Preview</div>
+        <h3 class="asset-title">Sample Game – Card Layout Preview</h3>
+        <p class="asset-tagline">
+          This test card is rendered directly in index.html so you can preview the layout without loading assets-data.js.
+        </p>
+        <ul class="asset-features">
+          <li>Uses the same styles as real asset cards.</li>
+          <li>Shows demo buttons row.</li>
+          <li>Shows footer with price and store button.</li>
+        </ul>
+        <div class="asset-links asset-links-demo">
+          <span class="asset-demo-label">Demo:</span>
+          <a class="asset-link asset-link-primary asset-link-demo" href="#" target="_blank" rel="noopener">WebGL Demo</a>
+          <a class="asset-link asset-link-primary asset-link-demo" href="#" target="_blank" rel="noopener">Android APK</a>
+        </div>
+        <div class="asset-footer">
+          <div class="asset-meta">
+            <div class="asset-price">
+              <span class="asset-price-current">$12.34</span>
+              <span class="asset-price-old">$19.99</span>
+            </div>
+            <div class="asset-sale-badge">-38%</div>
+          </div>
+
+          <div class="asset-links asset-links-store">
+            <a class="asset-link asset-link-store-main"
+              href="#"
+              target="_blank" rel="noopener">Unity Asset Store</a>
+          </div>
+        </div>
+        `;
+        grid.appendChild(article);
+        return;
+      }
 
       grid.innerHTML = "";
 
@@ -275,14 +390,16 @@
           .map(l => `<a class="asset-link" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`)
           .join("");
 
-        // 🔽 Tạo nút demo WebGL / APK nếu có
+        // Create demo buttons if available
         const demoWebHtml = asset.demoWeb
-          ? `<a class="asset-link" href="${asset.demoWeb}" target="_blank" rel="noopener">WebGL Demo</a>`
+          ? `<a class="asset-link asset-link-primary asset-link-demo" href="${asset.demoWeb}" target="_blank" rel="noopener">WebGL Demo</a>`
           : "";
 
         const demoApkHtml = asset.demoApk
-          ? `<a class="asset-link" href="${asset.demoApk}" target="_blank" rel="noopener">Android APK</a>`
+          ? `<a class="asset-link asset-link-primary asset-link-demo" href="${asset.demoApk}" target="_blank" rel="noopener">Android APK</a>`
           : "";
+
+        const hasDemo = !!(asset.demoWeb || asset.demoApk);
 
         article.innerHTML = `
         <div class="asset-thumb">
@@ -297,26 +414,37 @@
             ? `<ul class="asset-features">${featuresHtml}</ul>`
             : ""
           }
-        <div class="asset-meta">
-          <div class="asset-price">
-            <span class="asset-price-current">$${asset.price}</span>
-            ${asset.oldPrice
+        ${hasDemo ? `
+        <div class="asset-links asset-links-demo">
+          <span class="asset-demo-label">Demo:</span>
+          ${demoWebHtml}
+          ${demoApkHtml}
+        </div>
+        ` : ""}
+        <div class="asset-footer">
+          <div class="asset-meta">
+            <div class="asset-price">
+              <span class="asset-price-current">$${asset.price}</span>
+              ${asset.oldPrice
             ? `<span class="asset-price-old">$${asset.oldPrice}</span>`
             : ""
           }
-          </div>
-          ${asset.salePercent
+            </div>
+            ${asset.salePercent
             ? `<div class="asset-sale-badge">-${asset.salePercent}%</div>`
             : ""
           }
-        </div>
-        <div class="asset-links">
-          <a class="asset-link"
-            href="${asset.storeUrl}"
-            target="_blank" rel="noopener">Unity Asset Store</a>
-          ${demoWebHtml}
-          ${demoApkHtml}
-          ${extraLinksHtml}
+          </div>
+
+          <div class="asset-links asset-links-store">
+            <a class="asset-link asset-link-store-main"
+              href="${asset.storeUrl}"
+              target="_blank" rel="noopener">Unity Asset Store</a>
+            ${extraLinksHtml
+            ? `<div class="asset-links asset-links-extra">${extraLinksHtml}</div>`
+            : ""
+          }
+          </div>
         </div>
       `;
 
